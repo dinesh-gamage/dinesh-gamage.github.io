@@ -12641,6 +12641,7 @@ const QRCodeScanner = (props) => {
         if (data) {
             console.log("res : ", data);
             onChange(data);
+            onClose();
         }
     }
     function handleError(err) {
