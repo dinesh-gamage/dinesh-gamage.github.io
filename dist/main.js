@@ -12640,8 +12640,12 @@ const QRCodeScanner = (props) => {
     function handleScan(data) {
         if (data) {
             console.log("res : ", data);
+            alert(data);
             onChange(data);
             onClose();
+        }
+        else {
+            alert("no data");
         }
     }
     function handleError(err) {
