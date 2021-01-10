@@ -12286,7 +12286,7 @@ const FoundItemReport_1 = __webpack_require__(/*! ./FoundItemReport */ "./src/co
 const Dashboard = (props) => {
     // props 
     // states
-    let [screen, setScreen] = React.useState("report");
+    let [screen, setScreen] = React.useState("");
     let [drivingMode, setDrivingMode] = React.useState(false);
     function renderDashboardContent() {
         return (React.createElement("div", { className: "mda-driver-dashboard" },
@@ -12639,13 +12639,8 @@ const QRCodeScanner = (props) => {
     let [mode, setMode] = React.useState("env");
     function handleScan(data) {
         if (data) {
-            console.log("res : ", data);
-            alert(data);
             onChange(data);
             onClose();
-        }
-        else {
-            alert("no data");
         }
     }
     function handleError(err) {
