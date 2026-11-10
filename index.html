@@ -1,25 +1,290 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dinesh Gamage</title>
+  <meta name="description" content="Software engineer and Technical Lead based in Sri Lanka. Portfolio and Garage." />
+  <link rel="canonical" href="https://dineshgamage.dev/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231a3275'/%3E%3Ctext x='16' y='15' font-family='Arial' font-weight='700' font-size='11' fill='%23fff' text-anchor='middle'%3EDG%3C/text%3E%3Cpath d='M9 19h14M9 22h14M9 25h14' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&family=Geist:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f7f5f0;
+      --ink: #121b33;
+      --dim: #5a6278;
+      --line: rgba(18, 27, 51, 0.12);
+      --navy: #1a3275;
+      --navy-ink: #ffffff;
+      --navy-dim: rgba(255, 255, 255, 0.72);
+      --garage: #fbfaf7;
+      --garage-ink: #1d2120;
+      --garage-dim: #7c817e;
+      --garage-line: #e3e1da;
+      --warm: #a86f4c;
+      --shadow: rgba(18, 27, 51, 0.12);
+      color-scheme: light;
+    }
 
-    <title>Let's make memories</title>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0e1322;
+        --ink: #edeff5;
+        --dim: rgba(237, 239, 245, 0.64);
+        --line: rgba(237, 239, 245, 0.12);
+        --navy: #1f2b52;
+        --navy-ink: #edeff5;
+        --navy-dim: rgba(237, 239, 245, 0.7);
+        --garage: #151412;
+        --garage-ink: #edeae2;
+        --garage-dim: #858178;
+        --garage-line: #2b2925;
+        --warm: #d39a71;
+        --shadow: rgba(0, 0, 0, 0.4);
+        color-scheme: dark;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 3rem 1rem;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 1rem/1.55 'Instrument Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      width: 100%;
+      max-width: 46rem;
+    }
+
+    .me {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .me img {
+      flex: none;
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0.25rem var(--paper), 0 0 0 0.3125rem var(--line);
+    }
+
+    h1 {
+      font: 600 2.5rem/1.1 'Source Serif 4', Georgia, serif;
+      letter-spacing: -0.02em;
+    }
+
+    .me p {
+      margin-top: 0.375rem;
+      color: var(--dim);
+    }
+
+    .pick {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 16rem;
+      padding: 1.75rem;
+      border-radius: 1.25rem;
+      text-decoration: none;
+      box-shadow: 0 1.25rem 2.5rem -1.5rem var(--shadow);
+      transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-0.25rem);
+      box-shadow: 0 1.75rem 3rem -1.5rem var(--shadow);
+    }
+
+    .card:focus-visible {
+      outline: 0.125rem solid var(--ink);
+      outline-offset: 0.25rem;
+    }
+
+    .card small {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .card h2 {
+      margin-top: auto;
+      font-size: 1.75rem;
+      line-height: 1.15;
+    }
+
+    .card p {
+      margin-top: 0.5rem;
+    }
+
+    .go {
+      margin-top: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+
+    .go svg {
+      transition: transform 0.2s;
+    }
+
+    .card:hover .go svg {
+      transform: translateX(0.25rem);
+    }
+
+    .card--portfolio {
+      background: var(--navy);
+      color: var(--navy-ink);
+    }
+
+    .card--portfolio small,
+    .card--portfolio p {
+      color: var(--navy-dim);
+    }
+
+    .card--portfolio h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 600;
+    }
+
+    .card--garage {
+      background: var(--garage);
+      color: var(--garage-ink);
+      box-shadow: inset 0 0 0 1px var(--garage-line), 0 1.25rem 2.5rem -1.5rem var(--shadow);
+      font-family: 'Geist', 'Instrument Sans', system-ui, sans-serif;
+    }
+
+    .card--garage p {
+      color: var(--garage-dim);
+    }
+
+    .card--garage small {
+      color: var(--warm);
+    }
+
+    .card--garage h2 {
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    /* The Garage mark: initials over three door slats. */
+    .door {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.625rem;
+      background: var(--garage-ink);
+      color: var(--garage);
+      display: grid;
+      place-content: center;
+      justify-items: center;
+      gap: 0.1875rem;
+      font: 700 0.875rem/1 'Geist', system-ui, sans-serif;
+      letter-spacing: -0.04em;
+    }
+
+    .door::after {
+      content: '';
+      width: 1.4375rem;
+      height: 0.5rem;
+      background: repeating-linear-gradient(var(--garage) 0 0.125rem, transparent 0.125rem 0.1875rem);
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9375rem;
+    }
+
+    footer a {
+      color: var(--dim);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--ink);
+    }
+
+    @media (max-width: 40rem) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .pick {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .card {
+        min-height: 13rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="root"></div>
+  <main>
+    <div class="me">
+      <img src="https://github.com/dinesh-gamage.png?size=160" alt="Dinesh Gamage" width="72" height="72" />
+      <div>
+        <h1>Dinesh Gamage</h1>
+        <p>Software engineer and Technical Lead based in Sri Lanka.</p>
+      </div>
+    </div>
 
-    <script crossorigin src="https://uxp.s3.amazonaws.com/packages/react-16/react.production.min.js"></script>
-    <script crossorigin src="https://uxp.s3.amazonaws.com/packages/react-16/react-dom.production.min.js"></script>
+    <nav class="pick" aria-label="Where to go">
+      <a class="card card--portfolio" href="https://dineshgamage.dev">
+        <small>Portfolio</small>
+        <h2>Experience and work</h2>
+        <p>Where I've worked, what I've built and how to reach me.</p>
+        <span class="go">Open portfolio
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </a>
+      <a class="card card--garage" href="https://dineshgamage.dev/garage">
+        <span class="door" aria-hidden="true">DG</span>
+        <small>Garage</small>
+        <h2>Always building something.</h2>
+        <p>Apps, libraries and experiments, with screenshots and guides.</p>
+        <span class="go">Open garage
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </a>
+    </nav>
 
-    <script crossorigin src="https://uxp.s3.amazonaws.com/packages/prop-types/prop-types.min.js"></script>
-    <script crossorigin src="https://uxp.s3.amazonaws.com/packages/recharts/1.8.5/Recharts.min.js"></script>
-
-    <!-- Main -->
-    <script src="./dist/main.js"></script>
-
+    <footer>
+      <a href="https://github.com/dinesh-gamage">GitHub</a>
+      <a href="https://www.linkedin.com/in/dinesh-sankhe-gamage">LinkedIn</a>
+    </footer>
+  </main>
 </body>
-
 </html>
